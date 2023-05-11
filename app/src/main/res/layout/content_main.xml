@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <!--
+    Here want to have the list of credit cards
+        Each cc as an image
+        Have it be a RecyclerView, with list item as the cc image.
+        Have Onclick for the RecyclerView in a java activity
+            Reference this link to do
+            https://urldefense.com/v3/__https://github.com/mintedtech/CarsDemo__;!!HoV-yHU!r3J_MNUpFazfhwkIcud7MqTEgsfTTRlxj9MiHOdblDGTKK6Kn4Luebq0BS22IG6QwYI3o5Votm_aX2PH0dbFcCSIO9QYFJZW73iBHQ$
+
+    Instead of cars, do a bunch of cards
+    Generic Image + textView / editText with cc number + maybe closing date
+
+    FOR THE JAVA ACTIVITY: OnClick leads to card info page - with information about the card & link to bank.
+        IDEAS: Maybe have editText which takes current date and sets it to the next billing cycle?
+    -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/standard_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="3"
+        tools:layoutManager="GridLayoutManager"
+        tools:listitem="@layout/rv_item"
+        tools:spanCount="1" />
+</androidx.constraintlayout.widget.ConstraintLayout>

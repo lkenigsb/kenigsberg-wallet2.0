@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="standard_margin">16dp</dimen>
+    <dimen name="standard_elevation_card">8dp</dimen>
+    <dimen name="standard_corner_card">4dp</dimen>
+    <dimen name="standard_stroke_card">2dp</dimen>
+</resources>

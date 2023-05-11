@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context="com.mintedtech.wallet_20.activities.MainActivity">
+
+    <!--
+   Add the menu item here
+       Which leads to the page with about & Auto save
+
+   About page needs back button!!
+
+   Goes into the menu_main folder
+   -->
+
+<item
+    android:id="@+id/action_settings"
+    app:showAsAction="never"
+    android:title="@string/action_settings"
+    />
+
+<item
+    android:id="@+id/action_about"
+    android:icon="@android:drawable/ic_dialog_info"
+    android:title="@string/about"
+    app:showAsAction="never" />
+</menu>
