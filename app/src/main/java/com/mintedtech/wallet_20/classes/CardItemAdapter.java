@@ -28,7 +28,7 @@ import com.mintedtech.wallet_20.R;
 
 import java.util.Date;
 
-public class CardItemAdapter extends RecyclerView.Adapter<CardItemViewHolder>  {
+public class CardItemAdapter extends RecyclerView.Adapter<CardItemViewHolder> {
 
     private final int[] cardImages;
     private final String[] cardNames;
@@ -72,20 +72,19 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemViewHolder>  {
         MaterialDatePicker<Long> datePicker = builder.build();
         datePicker.addOnPositiveButtonClickListener(selection -> showDaysLeft(selection, holder));
 
-        FragmentManager fm = ((FragmentActivity)mContext).getSupportFragmentManager();
-        datePicker.show(fm,"datePicker");
+        FragmentManager fm = ((FragmentActivity) mContext).getSupportFragmentManager();
+        datePicker.show(fm, "datePicker");
     }
 
     private void showDaysLeft(Long selection, @NonNull CardItemViewHolder holder) {
-        if (selection != 0)
-        {
+        if (selection != 0) {
             Date dateReturned = new Date(selection);
             Date today = new Date();
 
             double differenceInMilliseconds = dateReturned.getTime() - today.getTime();
             double daysDifference = differenceInMilliseconds / (1000 * 60 * 60 * 24);
 
-            int wholeDaysLeft = (int)Math.ceil(daysDifference);
+            int wholeDaysLeft = (int) Math.ceil(daysDifference);
             wholeDaysLeft = wholeDaysLeft == -0 ? 0 : wholeDaysLeft;
 
             holder.tv_daysLeft.setText(wholeDaysLeft + " Day(s) Left");
@@ -351,10 +350,10 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemViewHolder> im
             editable.clear();
             editable.append(days + "days remaining");*//*
 
-*/
+ */
 /*
             holder.editText.setText(days + "days remaining for nect statement balance");*//*
-*/
+ */
 /*
 
         }
