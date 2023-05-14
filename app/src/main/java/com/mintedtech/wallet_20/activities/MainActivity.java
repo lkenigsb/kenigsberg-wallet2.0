@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             "https://customerportal.mastercard.com/login",
             "https://usa.visa.com/en_us/account/login?returnurl=%2Fen_us%2Faccount%2Fprofile"};
 
-    private int[] mArrayDates;
+    private int[] mArrayDates = {0,0,0};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
