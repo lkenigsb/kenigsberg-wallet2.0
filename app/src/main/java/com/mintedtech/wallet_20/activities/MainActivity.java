@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
             "https://customerportal.mastercard.com/login",
             "https://usa.visa.com/en_us/account/login?returnurl=%2Fen_us%2Faccount%2Fprofile"};
 
+    private int[] mArrayDates;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
 
         // create and set an adapter to use as the Layout Manager for this RV
-        CardItemAdapter cardItemAdapter = new CardItemAdapter(MainActivity.this, cardImages, cardNames, url);
+        CardItemAdapter cardItemAdapter = new CardItemAdapter(MainActivity.this, cardImages, cardNames, url, mArrayDates);
         recyclerView.setAdapter(cardItemAdapter);
 
     }

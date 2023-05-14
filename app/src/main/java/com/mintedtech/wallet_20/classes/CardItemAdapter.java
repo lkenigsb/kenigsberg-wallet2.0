@@ -36,12 +36,14 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemViewHolder> {
     private final String[] url;
 
     private final Context mContext;
+    private int[] mArrayDates;
 
-    public CardItemAdapter(Context context, int[] cardImages, String[] cardNames, String[] url) {
+    public CardItemAdapter(Context context, int[] cardImages, String[] cardNames, String[] url, int[] mArrayDates) {
         this.cardImages = cardImages;
         this.cardNames = cardNames;
         this.url = url;
         this.mContext = context;
+        this.mArrayDates = mArrayDates;
     }
 
     @NonNull
