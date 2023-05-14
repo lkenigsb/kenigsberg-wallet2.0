@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        onSaveInstanceState(mArrayDates);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -58,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
         CardItemAdapter cardItemAdapter = new CardItemAdapter(MainActivity.this, cardImages, cardNames, url, mArrayDates);
         recyclerView.setAdapter(cardItemAdapter);
 
+    }
+
+    private void onSaveInstanceState(int[] mArrayDates) {
+        this.mArrayDates = mArrayDates;
     }
 
     private void setupToolbar() {

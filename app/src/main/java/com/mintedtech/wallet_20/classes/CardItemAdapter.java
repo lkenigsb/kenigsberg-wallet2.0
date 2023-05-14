@@ -90,6 +90,7 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemViewHolder> {
             wholeDaysLeft = wholeDaysLeft == -0 ? 0 : wholeDaysLeft;
 
             holder.tv_daysLeft.setText(wholeDaysLeft + " Day(s) Left");
+            mArrayDates[holder.getAdapterPosition()] = wholeDaysLeft;
         }
     }
 
