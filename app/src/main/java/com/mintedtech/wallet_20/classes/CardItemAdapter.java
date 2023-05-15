@@ -86,10 +86,10 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemViewHolder> {
             double differenceInMilliseconds = dateReturned.getTime() - today.getTime();
             double daysDifference = differenceInMilliseconds / (1000 * 60 * 60 * 24);
 
-            int wholeDaysLeft = (int) Math.ceil(daysDifference);
+            int wholeDaysLeft = (int) Math.ceil(daysDifference) -1;
             wholeDaysLeft = wholeDaysLeft == -0 ? 0 : wholeDaysLeft;
 
-            mArrayDates[holder.getAdapterPosition()] = wholeDaysLeft + 1;
+            mArrayDates[holder.getAdapterPosition()] = wholeDaysLeft +1;
             notifyItemChanged (holder.getAdapterPosition ());
         }
     }

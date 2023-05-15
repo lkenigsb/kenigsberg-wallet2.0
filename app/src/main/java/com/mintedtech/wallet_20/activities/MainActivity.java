@@ -75,7 +75,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleFabClick(View view) {
-        Snackbar.make(view, "Adding another card?", Snackbar.LENGTH_LONG).show();
+        int closestDueDate = mArrayDates[0];
+        int counter = 1;
+        int index = 0;
+        while (counter < 3)
+        {
+            if (closestDueDate > mArrayDates[counter])
+            {
+                closestDueDate = mArrayDates[counter];
+                index = counter;
+            }
+            counter++;
+        }
+        if (closestDueDate == -99)
+        {
+            Snackbar.make(view, "Not all due dates entered", Snackbar.LENGTH_LONG).show();
+        }
+        else
+        {
+            Snackbar.make(view, "Next cc due: " + cardNames[index], Snackbar.LENGTH_LONG).show();
+        }
     }
 
 

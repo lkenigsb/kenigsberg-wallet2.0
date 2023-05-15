@@ -9,7 +9,8 @@
     android:layout_gravity="bottom|end"
     android:layout_marginEnd="@dimen/fab_margin"
     android:layout_marginBottom="16dp"
-    app:srcCompat="@android:drawable/gallery_thumb"
+    app:srcCompat="@android:drawable/ic_dialog_info"
+    android:contentDescription="@string/fab"
     tools:showIn="@layout/activity_main" />
     <!--Can I have the FAB be a plus button,
     which will be the activity to add a new credit card to the wallet-->
