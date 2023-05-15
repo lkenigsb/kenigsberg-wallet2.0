@@ -6,16 +6,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mintedtech.wallet_20.R;
 import com.mintedtech.wallet_20.classes.CardItemAdapter;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static com.mintedtech.wallet_20.lib.Utils.showInfoDialog;
 
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             "https://customerportal.mastercard.com/login",
             "https://usa.visa.com/en_us/account/login?returnurl=%2Fen_us%2Faccount%2Fprofile"};
 
-    private int[] mArrayDates = {0,0,0};
+    private int[] mArrayDates = {-99, -99, -99};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

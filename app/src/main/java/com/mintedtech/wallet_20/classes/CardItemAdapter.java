@@ -1,20 +1,21 @@
 package com.mintedtech.wallet_20.classes;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.mintedtech.wallet_20.R;
+
+import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -23,10 +24,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.datepicker.MaterialDatePicker;
-import com.mintedtech.wallet_20.R;
-
-import java.util.Date;
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class CardItemAdapter extends RecyclerView.Adapter<CardItemViewHolder> {
 
@@ -65,6 +63,8 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemViewHolder> {
         holder.tv_card_name.setText(cardNames[position]);
         holder.itemView.setOnClickListener(v -> cardClickHandler(v, holder));
         holder.button.setOnClickListener(v -> showDatePicker(holder));
+        if (mArrayDates[position] != -99)
+            holder.tv_daysLeft.setText(mArrayDates[position] + " Day(s) Left");
     }
 
     private void showDatePicker(@NonNull CardItemViewHolder holder) {
@@ -89,42 +89,35 @@ public class CardItemAdapter extends RecyclerView.Adapter<CardItemViewHolder> {
             int wholeDaysLeft = (int) Math.ceil(daysDifference);
             wholeDaysLeft = wholeDaysLeft == -0 ? 0 : wholeDaysLeft;
 
-            holder.tv_daysLeft.setText(wholeDaysLeft + " Day(s) Left");
-            mArrayDates[holder.getAdapterPosition()] = wholeDaysLeft;
+            mArrayDates[holder.getAdapterPosition()] = wholeDaysLeft + 1;
+            notifyItemChanged (holder.getAdapterPosition ());
         }
     }
 
     private void cardClickHandler(View v, @NonNull CardItemViewHolder holder) {
         int currentPosition = holder.getAdapterPosition();
 
-        //TODO: Add calculation using mDataSet[position] to produce the next billing statement due date
-
-        String msg = "Clicked on #" + +(currentPosition + 1) + ": " + cardNames[currentPosition] + "\n For login info click OK";
+        String msg = "Clicked on #" + +(currentPosition + 1) + ": "
+                + cardNames[currentPosition] + "\n For login info click OK";
 
         Context context = v.getContext();
 
-
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
         builder.setTitle("American Express");
-
         builder.setMessage(msg)
                 .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse(url[currentPosition]));
-                        startActivity(context, i, null);
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
+                .setPositiveButton("OK", (dialog, id) -> showCardURLSite (currentPosition, context))
+                .setNegativeButton("Cancel", (dialog, id) -> dialog.cancel());
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    private void showCardURLSite (int currentPosition, Context context)
+    {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url[currentPosition]));
+        startActivity(context, i, null);
     }
 
     @Override
