@@ -37,5 +37,6 @@
 
     <string name="button_text">Set \nUpcoming \nMonth\'s \nDue Day</string>
     <string name="days_left">Days Left</string>
+    <string name="fab">fab</string> />
 
 </resources>

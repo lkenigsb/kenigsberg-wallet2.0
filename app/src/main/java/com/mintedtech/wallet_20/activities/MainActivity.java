@@ -6,16 +6,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mintedtech.wallet_20.R;
 import com.mintedtech.wallet_20.classes.CardItemAdapter;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static com.mintedtech.wallet_20.lib.Utils.showInfoDialog;
 
@@ -30,8 +29,11 @@ public class MainActivity extends AppCompatActivity {
             "https://customerportal.mastercard.com/login",
             "https://usa.visa.com/en_us/account/login?returnurl=%2Fen_us%2Faccount%2Fprofile"};
 
+    private int[] mArrayDates = {-99, -99, -99};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        onSaveInstanceState(mArrayDates);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -53,9 +55,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
 
         // create and set an adapter to use as the Layout Manager for this RV
-        CardItemAdapter cardItemAdapter = new CardItemAdapter(MainActivity.this, cardImages, cardNames, url);
+        CardItemAdapter cardItemAdapter = new CardItemAdapter(MainActivity.this, cardImages, cardNames, url, mArrayDates);
         recyclerView.setAdapter(cardItemAdapter);
 
+    }
+
+    private void onSaveInstanceState(int[] mArrayDates) {
+        this.mArrayDates = mArrayDates;
     }
 
     private void setupToolbar() {
@@ -69,7 +75,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleFabClick(View view) {
-        Snackbar.make(view, "Adding another card?", Snackbar.LENGTH_LONG).show();
+        int closestDueDate = mArrayDates[0];
+        int counter = 1;
+        int index = 0;
+        while (counter < 3)
+        {
+            if (closestDueDate > mArrayDates[counter])
+            {
+                closestDueDate = mArrayDates[counter];
+                index = counter;
+            }
+            counter++;
+        }
+        if (closestDueDate == -99)
+        {
+            Snackbar.make(view, "Not all due dates entered", Snackbar.LENGTH_LONG).show();
+        }
+        else
+        {
+            Snackbar.make(view, "Next cc due: " + cardNames[index], Snackbar.LENGTH_LONG).show();
+        }
     }
 
 
